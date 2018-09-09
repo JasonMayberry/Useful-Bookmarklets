@@ -1,0 +1,1 @@
+javascript:function%20loadScript(scriptURL)%20%7B%20var%20scriptElem%20%3D%20document.createElement(%27SCRIPT%27)%3B%20scriptElem.setAttribute(%27language%27,%20%27JavaScript%27)%3B%20scriptElem.setAttribute(%27src%27,%20scriptURL)%3B%20document.body.appendChild(scriptElem)%3B%7DloadScript(%27http://westciv.com/mri/theMRI.js%27)%3B
