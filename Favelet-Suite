@@ -1,0 +1,1 @@
+javascript:s=document.body.appendChild(document.createElement('script'));s.id='fs';s.language='javascript';void(s.src='http://slayeroffice.com/tools/suite/suite.js');
