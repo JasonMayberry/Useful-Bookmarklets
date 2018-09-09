@@ -1,0 +1,1 @@
+javascript:function%20fnStartDesign(sUrl)%20%7Bvar%20nScript%20%3D%20document.createElement(%27script%27)%3BnScript.setAttribute(%27language%27,%27JavaScript%27)%3BnScript.setAttribute(%27src%27,sUrl)%3Bdocument.body.appendChild(nScript)%3B%7DfnStartDesign(%27https://www.sprymedia.co.uk/design/design/media/js/design-loader.js%27)%3B
