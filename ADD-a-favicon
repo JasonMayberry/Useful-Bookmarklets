@@ -1,0 +1,1 @@
+javascript: var newLink = document.createElement('link');newLink.setAttribute('rel','icon');newLink.setAttribute('type','image/png');newLink.setAttribute('href','http://www.tapper-ware.net/devel/js/JS.Bookmarklets/icons/next.png');document.querySelector('head').appendChild(newLink);void(0);
