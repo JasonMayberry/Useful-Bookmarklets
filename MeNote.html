@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MeNote</title>
+        <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEREQAAAAAAAREQAAAAAAAAEQAAAAAAAAARAAAAAAAAABEAAAAAAAAAEQAAAAAAAAARAAAAAAAAABEAAAAAAAAAEQAAAAAAAAARAAAAAAAAABEAAAABAAAAEQAAABEQAAARAAABERAAABEAAAERERERERERERERERERERERH4HwAA/D8AAP5/AAD+fwAA/n8AAP5/AAD+fwAA/n8AAP5/AAD+fwAA/n8AAH5+AAA+fAAAPnwAAAAAAAAAAAAA" rel="icon" type="image/x-icon"/>
+        <style>
+            body {
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            textarea {
+                font-size: 1.5em;
+                line-height: 1.4em;
+                font-family: monospace;
+                background: black;
+                color: green;
+                width: 100%;
+                height: 100%;
+                height: 100vh;
+                border: none;
+                outline: none;
+                margin: 0 0 0 0;
+                cursor: default;
+            }
+
+            #pos-abs {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: #3f3f3f;
+            }
+
+            #wraper {
+                width: 95%;
+                height: 100%;
+                margin: 0 auto;
+                margin-top: 31px;
+            }
+
+            button {
+                background-color: #094d00;
+                color: white;
+                border-radius: 5px;
+                margin-left: 13px;
+            }
+
+            ::-webkit-scrollbar {
+                width: 12px;
+            }
+
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 10px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="pos-abs">
+            <button onClick="localStorage.setItem('neo_text_for_now', ''); document.getElementById('txtBody').value='';">Clear</button>
+            <button onClick="SaveTextArea()">Save</button>
+            <button onClick="hold()">Hold</button>
+            <br>
+        </div>
+        <div id="wraper">
+            <textarea id="txtBody" autofocus placeholder="wake up MeNote..."></textarea>
+        </div>
+        <script language="javascript" type="text/javascript">
+            var textArea = document.getElementById('txtBody');
+            if (localStorage.getItem("neo_text_for_now") !== "") {
+                textArea.value = localStorage.getItem("neo_text_for_now");
+            }
+            function hold() {
+                var text = document.getElementById('txtBody').value;
+                localStorage.setItem("neo_text_for_now", text);
+            }
+            ;// console.save() ##############################################################################################
+            // **
+            // From: https://github.com/Decad/Console.save
+            // ** Usage: **
+            // console.save(data, [filename])
+            // **
+            // Data can be a string or just an object, objects are passed through json.stringify() before writing to file. 
+            // Filename is an optional parameter to change the name of the downloaded file, defaults to console.json.
+            // **
+            // ** Licence: MIT **
+            (function(console) {
+
+                console.save = function(data, filename) {
+
+                    if (!data) {
+                        console.error('Console.save: No data')
+                        return;
+                    }
+
+                    if (!filename)
+                        filename = 'console.json'
+
+                    if (typeof data === "object") {
+                        data = JSON.stringify(data, undefined, 4)
+                    }
+
+                    var blob = new Blob([data],{
+                        type: 'text/json'
+                    })
+                      , e = document.createEvent('MouseEvents')
+                      , a = document.createElement('a')
+
+                    a.download = filename
+                    a.href = window.URL.createObjectURL(blob)
+                    a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
+                    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+                    a.dispatchEvent(e)
+                }
+            }
+            )(console)
+            // console.save() ##############################################################################################
+            function SaveTextArea() {
+                console.save(textArea.value, "MeNote.txt")
+            }
+        </script>
+    </body>
+</html>
